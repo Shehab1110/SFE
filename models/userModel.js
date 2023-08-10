@@ -15,8 +15,8 @@ const userSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      enum: ['customer', 'seller', 'admin'],
-      default: 'customer',
+      enum: ['student', 'doctor', 'admin', 'company'],
+      default: 'student',
     },
     email: {
       type: String,
@@ -75,20 +75,6 @@ const userSchema = new mongoose.Schema(
       Date,
       select: false,
     },
-    location: {
-      type: {
-        type: String,
-        default: 'Point',
-        enum: ['Point'],
-      },
-      coordinates: [Number],
-    },
-    wishlist: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Product',
-      },
-    ],
   },
   {
     timestamps: true,
