@@ -4,7 +4,6 @@ const sharp = require('sharp');
 const validator = require('validator');
 
 const User = require('../models/userModel');
-const Product = require('../models/productModel');
 const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
 
@@ -75,27 +74,5 @@ exports.getAllUsers = catchAsync(async (req, res, next) => {
   res.status(200).json({
     status: 'success',
     data: users,
-  });
-});
-
-exports.addProduct = catchAsync(async (req, res, next) => {
-  const { name, description, price, image, category } = req.body;
-  const { user } = req;
-  const newProduct = await Product.create({
-    name,
-    description,
-    price,
-    image,
-    category,
-    seller: {
-      name: user.name,
-      photo: user.photo,
-      phoneNumber: user.phoneNumber,
-      location: user.location,
-    },
-  });
-  res.status(201).json({
-    status: 'success',
-    data: newProduct,
   });
 });

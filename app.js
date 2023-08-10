@@ -47,7 +47,10 @@ app.use((req, res, next) => {
 });
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'rootPage.html'));
+  res.status(200).json({
+    status: 'success',
+    message: 'Hello from server-side!',
+  });
 });
 
 app.use('/api/v1/users', userRouter);
