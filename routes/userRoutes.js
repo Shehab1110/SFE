@@ -8,10 +8,10 @@ router.get('/', userController.getAllUsers);
 router.get('/reOpenApp', authController.reOpenApp);
 router.post('/signup', authController.signUp);
 router.post(
-  '/seller-signup',
+  '/doctor-signup',
   authController.protect,
   authController.permitOnly('admin'),
-  authController.sellerSignUp
+  authController.doctorSignUp
 );
 router.post('/login', authController.login);
 router.patch(
