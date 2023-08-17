@@ -35,29 +35,21 @@ exports.signUp = catchAsync(async (req, res, next) => {
     password: req.body.password,
     passwordConfirm: req.body.passwordConfirm,
     phoneNumber: req.body.phoneNumber,
-    location: {
-      type: 'Point',
-      coordinates: req.body.location.coordinates,
-    },
   });
-  await sendSignupEmail(newUser);
+  // await sendSignupEmail(newUser);
   createSendToken(newUser, 201, res);
 });
 
-exports.sellerSignUp = catchAsync(async (req, res, next) => {
+exports.doctorSignUp = catchAsync(async (req, res, next) => {
   const newUser = await User.create({
     name: req.body.name,
     email: req.body.email,
     password: req.body.password,
     passwordConfirm: req.body.passwordConfirm,
     phoneNumber: req.body.phoneNumber,
-    location: {
-      type: 'Point',
-      coordinates: req.body.location.coordinates,
-    },
-    role: 'seller',
+    role: 'doctor',
   });
-  await sendSignupEmail(newUser);
+  // await sendSignupEmail(newUser);
   createSendToken(newUser, 201, res);
 });
 
