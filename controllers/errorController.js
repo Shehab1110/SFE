@@ -29,9 +29,15 @@ const sendErrorProd = (err, res) => {
 const handleCastErrorDB = (err) =>
   new AppError(`Invalid ${err.path}: ${err.value}`, 400);
 
-const handleDuplicateErrorDB = (err) =>
-  new AppError(`There is an existing email addres: ${err.keyValue.name}`, 400);
-
+const handleDuplicateErrorDB = (err) => {
+  if (err.keyPattern.email)
+    return new AppError(
+      `There is an existing email addres: ${err.keyValue.name}`,
+      400
+    );
+  if (err.keyPattern.student)
+    return new AppError('You already made a training request once!', 400);
+};
 const handleValidatorErrorDB = (err) => {
   const errors = Object.values(err.errors).map((el) => el.message);
   const message = `Invalid input data. ${errors.join('. ')}`;

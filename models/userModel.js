@@ -15,8 +15,13 @@ const userSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      enum: ['student', 'doctor', 'admin', 'company'],
+      enum: ['student', 'doctor', 'admin'],
       default: 'student',
+    },
+    program: {
+      type: String,
+      enum: ['Computer', 'Communication', 'Civil', 'Electrical'],
+      required: [true, 'Please specify the program!'],
     },
     email: {
       type: String,
@@ -26,17 +31,17 @@ const userSchema = new mongoose.Schema(
       lowercase: true,
       validate: [validator.isEmail, 'Please provide a valid email!'],
     },
-    phoneNumber: {
-      type: String,
-      validate: {
-        validator: function (v) {
-          const regex = /^(\+20|0)?1[0125][0-9]{8}$/;
-          return regex.test(v);
-        },
-        message: 'Please provide a valid phone number!',
-      },
-      required: [true, 'Please provide a phone number!'],
-    },
+    // phoneNumber: {
+    //   type: String,
+    //   validate: {
+    //     validator: function (v) {
+    //       const regex = /^(\+20|0)?1[0125][0-9]{8}$/;
+    //       return regex.test(v);
+    //     },
+    //     message: 'Please provide a valid phone number!',
+    //   },
+    //   required: [true, 'Please provide a phone number!'],
+    // },
     password: {
       type: String,
       required: [true, 'Please provide a password!'],

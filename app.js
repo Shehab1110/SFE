@@ -12,6 +12,8 @@ const globalErrorController = require('./controllers/errorController');
 
 const app = express();
 const userRouter = require('./routes/userRoutes');
+const studentRouter = require('./routes/studentRoutes');
+const doctorRouter = require('./routes/doctorRoutes');
 
 // Serving static files
 // app.use(express.static(path.join(__dirname, 'public')));
@@ -54,6 +56,8 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/v1/users', userRouter);
+app.use('/api/v1/students', studentRouter);
+app.use('/api/v1/doctors', doctorRouter);
 
 // Handling unhandled routes
 app.all('*', (req, res, next) => {
