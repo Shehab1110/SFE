@@ -34,7 +34,8 @@ exports.signUp = catchAsync(async (req, res, next) => {
     email: req.body.email,
     password: req.body.password,
     passwordConfirm: req.body.passwordConfirm,
-    phoneNumber: req.body.phoneNumber,
+    // phoneNumber: req.body.phoneNumber,
+    program: req.body.program,
   });
   // await sendSignupEmail(newUser);
   createSendToken(newUser, 201, res);
@@ -46,8 +47,9 @@ exports.doctorSignUp = catchAsync(async (req, res, next) => {
     email: req.body.email,
     password: req.body.password,
     passwordConfirm: req.body.passwordConfirm,
-    phoneNumber: req.body.phoneNumber,
+    // phoneNumber: req.body.phoneNumber,
     role: 'doctor',
+    program: req.body.program,
   });
   // await sendSignupEmail(newUser);
   createSendToken(newUser, 201, res);
